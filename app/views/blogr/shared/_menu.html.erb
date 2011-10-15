@@ -1,0 +1,9 @@
+<ul>
+    <% @menu_items.each do |menu|%>
+        <% if menu.title.downcase == "blog"%>
+            <li><%= link_to "Blog", blogr_posts_path%></li>
+        <% else%>
+            <li><%= link_to menu.menu_item, blogr_page_path(menu)%></li>
+        <% end %>
+    <% end %>
+<ul>

@@ -1,0 +1,68 @@
+<table id="pagesTable">
+    <thead>
+        <tr>
+            <th><input class="check-all" type="checkbox"></th>
+            <th>Title</th>
+            <th>Menu title</th>
+            <th>Hide</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tfoot>
+        <tr>
+            <td colspan="6">
+                <div class="bulk-actions align-left">
+                    <select name="dropdown">
+                        <option value="option1">Choose an action...</option>
+                        <option value="option2">Edit</option>
+                        <option value="option3">Delete</option>
+                    </select>
+                    <a class="button" href="#">Apply to selected</a>
+                </div>
+                <%#= paginate @pages%>
+                <div class="clear"></div>
+            </td>
+        </tr>
+    </tfoot>
+    <tbody>
+        <% @pages.each do |page|%>
+            <tr class=<%= cycle("even", "odd")%>  id="<%= page.position %>">
+                <td><input type="checkbox"></td>
+                <td><%= link_to page.title, blogr_admin_page_path(page) %></td>
+                <td><%= page.menu_item%></td>
+                <td><%= page.hidden == true ? (link_to "Unhide", unhide_blogr_admin_page_path(page)): (link_to "Hide", hide_blogr_admin_page_path(page)) %></td>
+                <td>
+                    <%= link_to image_tag("edit.png"), edit_blogr_admin_page_path(page) unless page.title.downcase == "blog"%>
+                    <%= link_to image_tag("delete.png"), blogr_admin_page_path(page), :method => :delete unless page.title.downcase == "blog"%>
+                </td>
+            </tr>
+        <% end %>
+    </tbody>
+</table>
+
+<script type="text/javascript">
+    var positionArr = Array();
+    $("#pagesTable").tableDnD({
+		onDragClass: "drag",
+        onDrop: function(table, row) {
+            var rows = table.tBodies[0].rows;
+            for (var i=0; i<rows.length; i++) {
+                positionArr.push(rows[i].id);
+            }
+            $.ajax({
+               type: "POST",
+               url: "pages/update_positions/",
+               data: "changed="+row.id+"&positionArray="+positionArr,
+               success: function(msg){
+               }
+            });
+            positionArr = Array();
+
+            $.ajax({
+		        type: "POST",
+		        url: "pages/update_page/",
+			    dataType: 'script'
+		    });
+	    }
+    });
+</script>

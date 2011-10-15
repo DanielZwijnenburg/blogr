@@ -1,0 +1,35 @@
+<div class="posts-box main-content">
+    <div class="posts-header">
+        <ul class="action-buttons clearfix fr">
+            <li><%#= link_to "new page", new_blogr_admin_page_path, :class => "button button-gray"%></li>
+            <li><%= link_to "Back", blogr_admin_posts_path, :class => "button button-gray"%></li>
+        </ul>
+        <h2><%= @post.title%></h2>
+    </div>
+    <div class="posts-box-content">
+        <div class="table">
+            <%= raw @post.body %>
+        </div>
+    </div>
+</div>
+
+<div class="posts-box main-content">
+    <div class="posts-header">
+        <ul class="action-buttons clearfix fr">
+            <li><%#= link_to "new page", new_blogr_admin_page_path, :class => "button button-gray"%></li>
+            <li><%#= link_to "Back", blogr_admin_posts_path, :class => "button button-gray"%></li>
+        </ul>
+        <h2>Comments</h2>
+    </div>
+    <div class="posts-box-content">
+        <div class="table">
+            <% @post.comments.each do |comment| %>
+                <div class="comment <%= cycle("even","uneven")%>">
+                    <h2>Title: <%= comment.title %></h2>
+                    <p>Name: <%= comment.name %></p>
+                    <p>Comment :<%= comment.body %></p>
+                </div>
+            <% end %>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,27 @@
+<div class="login-box main-content">
+  <div id="login-header">
+      <ul class="action-buttons clearfix fr">
+          <li><%= link_to "Register", new_blogr_admin_user_path, :class => "button button-gray"%></li>
+          <li><a href="#" class="button button-gray">Forgot Password</a></li>
+      </ul>
+      <h2>Blogr Login</h2>
+  </div>
+    <div id="login-section">
+        <%- flash.each do |name, msg| %>
+            <%= content_tag :div, msg, :class => "message notice"%>
+        <% end %>
+        <% form_tag blogr_admin_sessions_path do%>
+            <p>
+                <%= text_field_tag :email, params[:email], :value => "E-mail", :onfocus => "focusEmailField(this)", :onblur => "blurEmailField(this)",:style => "color: rgb(170, 170, 170);"%>
+                <%= password_field_tag :password, "Password", :onfocus => "focusPasswordField(this)", :onblur => "blurPasswordField(this)", :style => "color: rgb(170, 170, 170);"%>
+                <%= submit_tag "Login", :class => "large button button-gray fr"%>
+            </p>
+            <p class="clearfix">
+                <span class="fl">
+                    <input id="remember" class="" value="1" name="remember" type="checkbox">
+                    <label class="choice" for="remember">Keep me logged-in</label>
+                </span>
+            </p>
+        <% end %>
+    </div>
+</div>

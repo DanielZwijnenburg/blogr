@@ -1,0 +1,29 @@
+<div class="posts-box main-content">
+    <div class="posts-header">
+        <ul class="action-buttons clearfix fr">
+            <li><%#= link_to "new page", new_blogr_admin_page_path, :class => "button button-gray"%></li>
+            <li><%= link_to "Back", blogr_admin_medias_path, :class => "button button-gray"%></li>
+        </ul>
+        <h2>Edit media</h2>
+    </div>
+    <div class="posts-box-content">
+        <div class="form">
+            <%= form_for( @media, :url => blogr_admin_media_path(:id => @media.id), :html => { :method => "put", :multipart => true }) do |f|%>
+                <%= render "blogr/shared/error_messages", :object => @media %>
+                <table>
+                    <tr>
+                        <td><%= f.label :title%></td>
+                        <td><%= f.text_field :title%></td>
+                    </tr>
+                    <tr>
+                        <td><%= f.label :image%></td>
+                        <td><%= f.file_field :image, :class => "editor"%></td>
+                    </tr>
+                    <tr>
+                        <td><%= f.submit "create media", :class => "button button-green" %></td>
+                    </tr>
+                </table>
+            <% end %>
+        </div>
+    </div>
+</div>

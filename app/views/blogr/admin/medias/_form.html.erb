@@ -1,0 +1,16 @@
+<%= form_for @media, :url => blogr_admin_medias_path, :html => { :multipart => true } do |f|%>
+    <%= render "blogr/shared/error_messages", :object => @media %>
+    <table>
+        <tr>
+            <td><%= f.label :title%></td>
+            <td><%= f.text_field :title%></td>
+        </tr>
+        <tr>
+            <td><%= f.label :image%></td>
+            <td><%= f.file_field :image, :class => "editor"%></td>
+        </tr>
+        <tr>
+            <td><%= f.submit "create media", :class => "button button-green" %></td>
+        </tr>
+    </table>
+<% end %>

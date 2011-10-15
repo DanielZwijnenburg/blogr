@@ -1,0 +1,17 @@
+<div class="pages-box main-content">
+    <div class="pages-header">
+        <ul class="action-buttons clearfix fr">
+            <li><%= link_to "New page", new_blogr_admin_page_path, :class => "button button-gray"%></li>
+            <li><a href="#" class="button button-gray">Archive</a></li>
+        </ul>
+        <h2>Pages Index</h2>
+    </div>
+    <div class="pages-box-content">
+        <div class="table">
+            <div id="pages-holder">
+              <%= render :partial => "page", :locals => {:pages => @pages} %>
+            </div>
+        </div>
+    </div>
+</div>
+

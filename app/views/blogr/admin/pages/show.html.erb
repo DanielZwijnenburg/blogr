@@ -1,0 +1,62 @@
+<div class="pages-box main-content">
+    <div class="pages-header">
+        <ul class="action-buttons clearfix fr">
+            <li><%= link_to "Edit page", edit_blogr_admin_page_path(@page), :class => "button button-gray"%></li>
+            <li><%= link_to "Back", blogr_admin_pages_path, :class => "button button-gray"%></li>
+        </ul>
+        <h2><%= @page.title%></h2>
+    </div>
+    <div class="posts-box-content">
+        <div class="table">
+            <%= raw @page.body %>
+        </div>
+    </div>
+</div>
+
+<% if @page.has_inquire?%>
+<div class="pages-box main-content">
+    <div class="pages-header">
+        <ul class="action-buttons clearfix fr">
+            <li><%#= link_to "new page", new_blogr_admin_page_path, :class => "button button-gray"%></li>
+            <li><%#= link_to "Back", blogr_admin_pages_path, :class => "button button-gray"%></li>
+        </ul>
+        <h2>Inquiries</h2>
+    </div>
+    <div class="posts-box-content">
+        <div class="table">
+            <table id="pagesTable">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Question</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <td colspan="6">
+                            <%#= paginate @pages%>
+                            <div class="clear"></div>
+                        </td>
+                    </tr>
+                </tfoot>
+                <tbody>
+                    <% @page.inquiries.each do |inquire|%>
+                        <tr class=<%= cycle("even", "odd")%>>
+                            <td><%= inquire.name%></td>
+                            <td><%= inquire.email %></td>
+                            <td><%= inquire.question %></td>
+                            <td>
+                                <%#= link_to image_tag("edit.png"), edit_blogr_admin_page_path(page)%>
+                                <%#= link_to image_tag("delete.png"), blogr_admin_page_path(page), :method => :delete unless page.title.downcase == "blog"%>
+                                <%#= button_to "Delete", blogr_admin_page_path(page), :method => :delete unless page.title.downcase == "blog" %>
+                            </td>
+                        </tr>
+                    <% end %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<% end %>

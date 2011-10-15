@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Rails engine blog</title>
+    <meta name="description" content="Rails::Engine blog">
+    <meta name="author" content="DanielZ">
+    <%= stylesheet_link_tag("reset", "blogr", "css3buttons") %>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1 id="title"><%= link_to "Blog!", blogr_root_path %></h1>
+        </header>
+        <div id="menu">
+            <%= render "blogr/shared/menu"%>
+        </div>
+        <div id="main">
+            <%= yield %>
+        </div>
+    </div>
+</body>
+</html>

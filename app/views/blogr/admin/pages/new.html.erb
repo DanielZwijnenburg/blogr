@@ -1,0 +1,14 @@
+<div class="pages-box main-content">
+    <div class="pages-header">
+        <ul class="action-buttons clearfix fr">
+            <li><%#= link_to "new page", new_blogr_admin_page_path, :class => "button button-gray"%></li>
+            <li><%= link_to "Back", blogr_admin_pages_path, :class => "button button-gray"%></li>
+        </ul>
+        <h2>New page</h2>
+    </div>
+    <div class="pages-box-content">
+        <div class="form">
+            <%= render "form"%>
+        </div>
+    </div>
+</div>

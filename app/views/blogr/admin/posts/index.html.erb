@@ -1,0 +1,56 @@
+<div class="posts-box main-content">
+    <div class="posts-header">
+        <ul class="action-buttons clearfix fr">
+            <li><%= link_to "New post", new_blogr_admin_post_path, :class => "button button-gray"%></li>
+            <li><a href="#" class="button button-gray">Archive</a></li>
+        </ul>
+        <h2>Posts Index</h2>
+    </div>
+    <div class="posts-box-content">
+        <div class="table">
+            <table>
+                <thead>
+                    <tr>
+                        <th><input class="check-all" type="checkbox"></th>
+                        <th>Title</th>
+                        <th>Category</th>
+                        <th>Comments</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <td colspan="6">
+                            <div class="bulk-actions align-left">
+                                <select name="dropdown">
+                                    <option value="option1">Choose an action...</option>
+                                    <option value="option2">Edit</option>
+                                    <option value="option3">Delete</option>
+                                </select>
+                                <a class="button" href="#">Apply to selected</a>
+                            </div>
+                            <%= paginate @posts%>
+                            <div class="clear"></div>
+                        </td>
+                    </tr>
+                </tfoot>
+                <tbody>
+                    <% @posts.each do |post|%>
+                        <tr class=<%= cycle("even", "odd")%>>
+                            <td><input type="checkbox"></td>
+                            <td><%= link_to post.title, blogr_admin_post_path(post) %></td>
+                            <td><%= post.category ? post.category.title : "Geen categorie"%></td>
+                            <td><%= post.comments_count%></td>
+                            <td><%= post.published == true ? "Published": (link_to "Publish", publish_blogr_admin_post_path(post)) %></td>
+                            <td>
+                                <%= link_to image_tag("edit.png"), edit_blogr_admin_post_path(post)%>
+                                <%= link_to image_tag("delete.png"), blogr_admin_post_path(post), :method => :delete%>
+                            </td>
+                        </tr>
+                    <% end %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

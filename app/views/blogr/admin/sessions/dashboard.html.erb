@@ -1,0 +1,43 @@
+<div class="dashboard-box main-content">
+    <div class="dashboard-header">
+        <ul class="action-buttons clearfix fr">
+            <li><a href="#" class="button button-gray">button1</a></li>
+            <li><a href="#" class="button button-gray">button2</a></li>
+        </ul>
+        <h2>Activity</h2>
+    </div>
+            <%#= link_to "new page", new_blogr_admin_page_path%>
+    <div class="dashboard-box-content">
+        <div class="table">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Who</th>
+                        <th>What</th>
+                        <th>When</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <td colspan="6">
+                            <%= paginate @activities%>
+                            <div class="clear"></div>
+                        </td>
+                    </tr>
+                </tfoot>
+                <tbody>
+                    <% @activities.each do |activity|%>
+                        <tr class=<%= cycle("even", "odd")%>>
+                            <td><%= activity.who %></td>
+                            <td><%= activity.what %></td>
+                            <td><%= activity.created_at.strftime("%d-%m-%y")%></td>
+                        </tr>
+                    <% end %>
+                </tbody>
+            </table>
+        </div>
+        <div class="box-contents">
+            <%#= image_tag("stats.png")%>
+        </div>
+    </div>
+</div>

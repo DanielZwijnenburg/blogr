@@ -1,0 +1,25 @@
+<div class="posts-box main-content">
+    <div class="posts-header">
+        <ul class="action-buttons clearfix fr">
+            <li><%#= link_to "new page", new_blogr_admin_page_path, :class => "button button-gray"%></li>
+            <li><%= link_to "Back", blogr_admin_categories_path, :class => "button button-gray"%></li>
+        </ul>
+        <h2>Edit <%= @category.title%></h2>
+    </div>
+    <div class="posts-box-content">
+        <div class="table">
+            <%= form_for( @category, :url => blogr_admin_category_path(:id => @category.id), :html => { :method => "put"}) do |f|%>
+                <%= render "blogr/shared/error_messages", :object => @category %>
+                <table>
+                    <tr>
+                        <td><%= f.label :title%></td>
+                        <td><%= f.text_field :title%></td>
+                    </tr>
+                    <tr>
+                        <td><%= f.submit "create category", :class => "button button-green" %></td>
+                    </tr>
+                </table>
+            <% end %>
+        </div>
+    </div>
+</div>

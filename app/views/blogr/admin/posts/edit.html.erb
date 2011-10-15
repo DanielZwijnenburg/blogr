@@ -1,0 +1,41 @@
+<div class="posts-box main-content">
+    <div class="posts-header">
+        <ul class="action-buttons clearfix fr">
+            <li><%#= link_to "new page", new_blogr_admin_page_path, :class => "button button-gray"%></li>
+            <li><%= link_to "Back", blogr_admin_posts_path, :class => "button button-gray"%></li>
+        </ul>
+        <h2>Edit post</h2>
+    </div>
+    <div class="posts-box-content">
+        <div class="form">
+            <%= form_for( @post, :url => blogr_admin_post_path(:id => @post.id), :html => { :method => "put" }) do |f|%>
+                <%= render "blogr/shared/error_messages", :object => @post %>
+                <table>
+                    <tr>
+                        <td><%= f.label :title%></td>
+                        <td><%= f.text_field :title%></td>
+                    </tr>
+                    <tr>
+                        <td><%= f.label :body%></td>
+                        <td><%= f.text_area :body, :class => "editor"%></td>
+                    </tr>
+                    <tr>
+                        <td><%#= f.label :date%></td>
+                        <td><%#= f.text_area :date%></td>
+                    </tr>
+                    <tr>
+                        <td><%= f.label :category_id%></td>
+                        <td><%= f.select :category_id, @categories.map{|c| [c.title, c.id]}, :include_blank => "No category"%></td>
+                    </tr>
+                    <tr>
+                        <td><%= f.label :published %></td>
+                        <td><%= f.check_box :published%></td>
+                    </tr>
+                    <tr>
+                        <td><%= f.submit "create post", :class => "button button-green" %></td>
+                    </tr>
+                </table>
+            <% end %>
+        </div>
+    </div>
+</div>

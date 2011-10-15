@@ -1,0 +1,52 @@
+<div class="categories-box main-content">
+    <div class="categories-header">
+        <ul class="action-buttons clearfix fr">
+            <li><%= link_to "New category", new_blogr_admin_category_path, :class => "button button-gray"%></li>
+            <li><a href="#" class="button button-gray">Archive</a></li>
+        </ul>
+        <h2>Categories Index</h2>
+    </div>
+    <div class="categories-box-content">
+        <div class="table">
+            <table>
+                <thead>
+                    <tr>
+                        <th><input class="check-all" type="checkbox"></th>
+                        <th>Title</th>
+                        <th>Posts</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <td colspan="6">
+                            <div class="bulk-actions align-left">
+                                <select name="dropdown">
+                                    <option value="option1">Choose an action...</option>
+                                    <option value="option2">Edit</option>
+                                    <option value="option3">Delete</option>
+                                </select>
+                                <a class="button" href="#">Apply to selected</a>
+                            </div>
+                            <%= paginate @categories%>
+                            <div class="clear"></div>
+                        </td>
+                    </tr>
+                </tfoot>
+                <tbody>
+                    <% @categories.each do |category|%>
+                        <tr class=<%= cycle("even", "odd")%>>
+                            <td><input type="checkbox"></td>
+                            <td><%= category.title%></td>
+                            <td><%= category.posts.count%></td>
+                            <td>
+                                <%= link_to image_tag("edit.png"), edit_blogr_admin_category_path(category)%>
+                                <%= link_to image_tag("delete.png"), blogr_admin_category_path(category), :method => :delete%>
+                            </td>
+                        </tr>
+                    <% end %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

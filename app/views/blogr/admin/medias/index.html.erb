@@ -1,0 +1,52 @@
+<div class="medias-box main-content">
+    <div class="medias-header">
+        <ul class="action-buttons clearfix fr">
+            <li><%= link_to "New media", new_blogr_admin_media_path, :class => "button button-gray"%></li>
+            <li><a href="#" class="button button-gray">Archive</a></li>
+        </ul>
+        <h2>Medias Index</h2>
+    </div>
+    <div class="medias-box-content">
+        <div class="table">
+            <table>
+                <thead>
+                    <tr>
+                        <th><input class="check-all" type="checkbox"></th>
+                        <th>Title</th>
+                        <th>Image</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <td colspan="6">
+                            <div class="bulk-actions align-left">
+                                <select name="dropdown">
+                                    <option value="option1">Choose an action...</option>
+                                    <option value="option2">Edit</option>
+                                    <option value="option3">Delete</option>
+                                </select>
+                                <a class="button" href="#">Apply to selected</a>
+                            </div>
+                            <%= paginate @medias%>
+                            <div class="clear"></div>
+                        </td>
+                    </tr>
+                </tfoot>
+                <tbody>
+                    <% @medias.each do |media|%>
+                        <tr class=<%= cycle("even", "odd")%>>
+                            <td><input type="checkbox"></td>
+                            <td><%= media.title %></td>
+                            <td><%= image_tag media.image.url(:thumb)%></td>
+                            <td>
+                                <%= link_to image_tag("edit.png"), edit_blogr_admin_media_path(media)%>
+                                <%= link_to image_tag("delete.png"), blogr_admin_media_path(media), :method => :delete%>
+                            </td>
+                        </tr>
+                    <% end %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

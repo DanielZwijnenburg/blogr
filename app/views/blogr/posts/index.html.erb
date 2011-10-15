@@ -1,0 +1,5 @@
+<h2>Posts Index</h2>
+<% @posts.each do |post|%>
+    <h3><%= link_to post.title, blogr_post_path(post) %></h3>
+    <p><%= raw post.body%></p>
+<% end %>

@@ -1,0 +1,27 @@
+<div class="main-content">
+    <div class="pages-header">
+        <h2>Media</h2>
+    </div>
+    <div class="pages-box-content">
+        <div class="table">
+            <div id="pages-holder">
+                <table>
+                    <% @medias.each do |media|%>
+                    <!-- #{media.image.url(:thumb)} -->
+                    <tr>
+                        <td><%= link_to_function (image_tag media.image.url(:thumb)), "insertTinymceImage()" %></td>
+                    </tr>
+                    <% end %>
+                </table>
+                <%= paginate @medias%>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+function insertTinymceImage() {
+        // opener.tinyMCE.execCommand('mceInsertContent', false, '<img src="cake" />');
+        window.close();
+}
+</script>

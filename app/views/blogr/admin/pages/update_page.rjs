@@ -1,0 +1,2 @@
+@pages = Blogr::Page.find(:all, :order => "position ASC")
+# page.replace_html "pages-holder", :partial => "page", :locals => {:pages => @pages}

@@ -1,0 +1,21 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+    "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Rails engine blog</title>
+	<meta name="description" content="Rails::Engine blog">
+	<meta name="author" content="DanielZ">
+	<%= stylesheet_link_tag "admin", "http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.10/jquery-ui.min.js" %>
+	<%= javascript_include_tag :all%>
+	<%= javascript_include_tag  "blogr_admin","jquery", "http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.10/jquery-ui.min.js", "tiny_mce/jquery.tinymce.js", "jquery.tablednd_0_5.js", "jqrails.js" %>
+	<%= csrf_meta_tag %>
+</head>
+<body>
+    <div class="container">
+        <div id="main">
+            <%= yield %>
+        </div>
+    </div>
+</body>
+</html>

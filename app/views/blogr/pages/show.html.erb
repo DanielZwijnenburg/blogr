@@ -1,0 +1,3 @@
+<h2><%= @page.title%></h2>
+<p><%= raw @page.body%></p>
+<%= render "blogr/inquiries/form" if @page.has_inquire == true%>

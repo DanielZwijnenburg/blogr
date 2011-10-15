@@ -1,0 +1,24 @@
+<%= form_for @page, :url => blogr_admin_pages_path do |f|%>
+    <%= render "blogr/shared/error_messages", :object => @page %>
+    <table>
+        <tr>
+            <td><%= f.label :menu_item%></td>
+            <td><%= f.text_field :menu_item%></td>
+        </tr>
+        <tr>
+            <td><%= f.label :title%></td>
+            <td><%= f.text_field :title%></td>
+        </tr>
+        <tr>
+            <td><%= f.label :body%></td>
+            <td><%= f.text_area :body, :class => "editor"%></td>
+        </tr>
+        <tr>
+            <td><%= f.label :has_inquire %></td>
+            <td><%= f.check_box :has_inquire%></td>
+        </tr>
+        <tr>
+            <td><%= f.submit "create page", :class => "button button-green" %></td>
+        </tr>
+    </table>
+<% end %>
